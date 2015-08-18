@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Slyce-ios-sdk by zigabuki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Slyce-ios-sdk</h1>
+      <h2 class="project-tagline">Demo</h2>
+      <a href="https://github.com/zigabuki/Slyce-iOS-SDK" class="btn">View on GitHub</a>
+      <a href="https://github.com/zigabuki/Slyce-iOS-SDK/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/zigabuki/Slyce-iOS-SDK/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="slyce-ios-sdk" class="anchor" href="#slyce-ios-sdk" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slyce iOS SDK</h1>
+
+<p>The Slyce iOS SDK makes it easy to add visual search capabilities to mobile apps.</p>
+
+<h2>
+<a id="contents" class="anchor" href="#contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contents</h2>
+
+<ul>
+<li><a href="#use-cases">Use Cases</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#add-the-sdk-to-your-project">Add the SDK to Your Project</a></li>
+<li><a href="#credentials">Credentials</a></li>
+<li><a href="#documentation">Documentation</a></li>
+</ul>
+
+<h2>
+<a id="use-cases" class="anchor" href="#use-cases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use Cases</h2>
+
+<p>The SDK enables 3 major modes of operation: <strong>Headless</strong>, <strong>Headless/Camera</strong>, <strong>Full UI</strong>.</p>
+
+<h3>
+<a id="headless" class="anchor" href="#headless" aria-hidden="true"><span class="octicon octicon-link"></span></a>Headless</h3>
+
+<p>SDK provides the methods required to submit images and receive results. 
+Ideal for cases where the app already handles the camera and has its own UI.</p>
+
+<h3>
+<a id="headlesscamera" class="anchor" href="#headlesscamera" aria-hidden="true"><span class="octicon octicon-link"></span></a>Headless/Camera</h3>
+
+<p>A headless mode where the SDK manages the camera. <strong>App developers are responsible to implement their own UI.</strong> 
+Ideal for cases where app developers would like to utilize SDK features such as continues barcodes detection, yet would like to maintain full flexibility with anything related to the UI/UX.</p>
+
+<h3>
+<a id="full-ui" class="anchor" href="#full-ui" aria-hidden="true"><span class="octicon octicon-link"></span></a>Full UI</h3>
+
+<p>The SDK takes care of the entire flow from scanning to getting results. The SDK provides a UI that can be customized. Provides a turnkey scan-to-products solution.</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>An iOS development environment including Xcode 5.0 or above and iOS SDK 7.0 or above</li>
+<li>An iPhone/iPad running iOS 7.0 or above (you cannot use the iOS Simulator when using the Headless/Camera or Full UI Mode, as the Simulator cannot produce video frames)</li>
+<li>A Slyce client ID</li>
+</ul>
+
+<h2>
+<a id="add-the-sdk-to-your-project" class="anchor" href="#add-the-sdk-to-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add the SDK to Your Project</h2>
+
+<h3>
+<a id="if-you-use-cocoapods-then-add-these-lines-to-your-podfile" class="anchor" href="#if-you-use-cocoapods-then-add-these-lines-to-your-podfile" aria-hidden="true"><span class="octicon octicon-link"></span></a>If you use <a href="http://cocoapods.org">CocoaPods</a>, then add these lines to your podfile:</h3>
+
+<div class="highlight highlight-ruby"><pre>platform <span class="pl-c1">:ios</span>, <span class="pl-s"><span class="pl-pds">'</span>7.0<span class="pl-pds">'</span></span>
+pod <span class="pl-s"><span class="pl-pds">'</span>Slyce-iOS-SDK<span class="pl-pds">'</span></span></pre></div>
+
+<h3>
+<a id="if-you-dont-use-cocoapods-then" class="anchor" href="#if-you-dont-use-cocoapods-then" aria-hidden="true"><span class="octicon octicon-link"></span></a>If you don't use CocoaPods, then:</h3>
+
+<ol>
+<li>Clone or download the SDK, which consists of a framework, resources bundle, API docs, SDK Overview PDF and release notes. It also includes a sample app.</li>
+<li>Drag and the drop the <code>SlyceSDK.framework</code> to the app’s project (make sure you copy the framework to the project).</li>
+<li>If you plan to use the Full UI mode, drag and the drop the <code>SlyceSDK.bundle</code> to the app’s project (make sure you copy the bundle to the project).</li>
+<li>In your project's <strong>Build Settings</strong> (in the <code>TARGETS</code> section, not the <code>PROJECTS</code> section):
+
+<ul>
+<li>add <code>-ObjC</code> to <code>Other Linker Flags</code>
+</li>
+</ul>
+</li>
+<li>In your project's <strong>Build Phases</strong>, link your project with the following library:
+
+<ul>
+<li><code>libicucore.dylib</code></li>
+</ul>
+</li>
+<li>To start working, import <code>&lt;SlyceSDK/SlyceSDK.h&gt;</code> in order to import all the public headers.</li>
+</ol>
+
+<h2>
+<a id="credentials" class="anchor" href="#credentials" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credentials</h2>
+
+<p>Your mobile integration requires a <code>client_id</code>.</p>
+
+<p>You can obtain these Slyce API credentials by visiting the <a href="http://slyce.it/products-services">Products Services page on Slyce site</a> or via a Slyce representative.</p>
+
+<p>After you obtain one, you should use it when initializing the central <code>SFSlyce</code> object when using of the SDK modes.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<ul>
+<li>These docs in the SDK, which include an overview of usage (PDF), API Reference (appledoc format), and sample code.</li>
+<li>The sample app included in this SDK.</li>
+<li>Header files are thoroughly documented; refer to them as needed for extra details about any given property or parameter.</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/zigabuki/Slyce-iOS-SDK">Slyce-ios-sdk</a> is maintained by <a href="https://github.com/zigabuki">zigabuki</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
